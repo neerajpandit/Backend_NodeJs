@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import express from "express";
 import connectDB from "./database/monogdb.js";
 import dotenv from "dotenv";
