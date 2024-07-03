@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 app.use(
   session({
-    secret: process.env.ACCESS_TOKEN_SECRET, // Replace with your secret key
+    secret: "chai-aur-code", // Replace with your secret key
     resave: false,
     saveUninitialized: false,
   }),
