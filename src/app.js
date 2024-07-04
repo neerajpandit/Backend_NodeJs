@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 const app = express();
-
-
-
+import expressWinston from 'express-winston'
+import { transports, format } from "winston";
+import logger from "./logger/logger.js";
 
 
 
@@ -21,6 +21,11 @@ app.use(express.static("public"));
 app.use(cookieParser());
 
 
+
+app.use(expressWinston.logger({
+  winstonInstance: logger,
+  statusLevels: true
+}))
 
 import userRouter from "./routes/user.routes.js";
 

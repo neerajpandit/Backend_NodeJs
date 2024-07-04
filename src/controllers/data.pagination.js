@@ -17,12 +17,15 @@ const dataPagination = asyncHandler(async (req, res) => {
     const paginatedUsers = await Person.find().skip(startIndex).limit(rowSize);
     const totalDocuments = await Person.countDocuments();
     const totalPages = Math.ceil(totalDocuments / rowSize);
-
+    const leftDocument = Math.ceil(totalDocuments-(pageNo*rowSize))
+    const currentDocument =rowSize
+    const currentPage= pageNo
+    const leftPage = Math.ceil(totalPages-pageNo)
     if(pageNo>totalPages){
         throw new ApiError(400, `Please Select Page No less then ${totalPages}`)
     }
 
-    return res.status(200).json(new ApiResponse(200,{ users: paginatedUsers, totalPages }));
+    return res.status(200).json(new ApiResponse(200,{ users: paginatedUsers,totalDocuments,currentDocument,leftDocument, totalPages,currentPage,leftPage }));
 });
 
 
