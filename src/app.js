@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport";
 const app = express();
-import http from "http";
+
 
 
 
@@ -30,12 +30,16 @@ app.use(
     saveUninitialized: false,
   }),
 );
+// console.log(process.env.ACCESS_TOKEN_SECRET)
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 import userRouter from "./routes/user.routes.js";
 
-
+app.get('/', (req, res) => {
+  res.send('products api running new deploy for Exapmle visit:-  https://vibraverve.onrender.com/api/v1/product/getProduct');
+});
 app.use("/api/v1/users", userRouter);
 
 export { app};
